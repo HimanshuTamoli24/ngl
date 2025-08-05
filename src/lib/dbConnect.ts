@@ -1,6 +1,6 @@
-import mongoose from "mongoose";    
-
-type connectionObject= {
+import mongoose from "mongoose";
+import { env } from "../env";
+type connectionObject = {
     isConnected?: number;
 };
 
@@ -11,9 +11,14 @@ async function dbConnect(): Promise<void> {
         return;
     }
     try {
-        await mongoose.connect(process.env.MONGODB_URI );
+        const db = await mongoose.connect(env.MONGODB_URI);
+        connection.isConnected = db.connections[0].readyState;
+        console.log("MongoDB connected successfully");
     } catch (error) {
-        
+        console.error("MongoDB connection error:", error);
+        process.exit(1);
     }
 
 }
+
+export default dbConnect;
