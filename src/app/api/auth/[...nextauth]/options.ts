@@ -56,21 +56,21 @@ export const authOptions: NextAuthOptions = {
     ],
     pages: {
         signIn: "/signin",
-        
+
 
     },
     session: {
         strategy: "jwt",
     },
     secret: env.NEXTAUTH_SECRET,
-    
+
     callbacks: {
         async jwt({ token, user }) {
             // Persist the user information in the token
             if (user) {
                 token._id = user.id.toString();
                 token.username = user.username;
-                token.isVerified = user.isVerified; 
+                token.isVerified = user.isVerified;
                 token.isAcceptingMessages = user.isAcceptingMessages;
             }
             return token;
