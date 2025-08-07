@@ -6,7 +6,7 @@ const verifyCodeSchema = z.object({
     otp: verifySchema
 })
 
-async function POST(req: Request) {
+export async function POST(req: Request) {
     try {
         await dbConnect()
         const { username, code } = await req.json()
@@ -37,13 +37,7 @@ async function POST(req: Request) {
                 success: false,
                 message: "Code expired, please request a new code"
             }, { status: 400 });
-
         }
-
-
-
-
-
 
     } catch (error) {
         console.error("Error in verify code route", error);
@@ -51,7 +45,5 @@ async function POST(req: Request) {
             success: false,
             message: "Internal server error"
         }, { status: 500 });
-
     }
-
 }
