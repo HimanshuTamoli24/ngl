@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input"
 import { signupSchema } from "@/schemas/signupSchema"
 import { Button } from "@/components/ui/button"
 
-function Signin() {
+function Signup() {
     const [username, setUsername] = useState("")
     const [usernameMessage, setUsernameMessage] = useState("")
     const [isCheckingUsername, setIsCheckingUsername] = useState(false)
@@ -180,4 +180,4 @@ function Signin() {
     )
 }
 
-export default Signin
+export default Signup
