@@ -8,6 +8,7 @@ export async function POST(request: Request) {
     await dbConnect();
     try {
         const { email, username, password } = await request.json();
+        console.log("Sign up request received:", { email, username, password });
 
         // is user existing
         const isExistingUser = await UserModel.findOne({ email });
@@ -61,16 +62,15 @@ export async function POST(request: Request) {
             expiryDate.setDate(expiryDate.getDate() + 1)
 
             await UserModel.create({
-                data: {
-                    email,
-                    username,
-                    password: hashedPassword,
-                    isVerified: false,
-                    verifyCode,
-                    verifyCodeExpiry: expiryDate,
-                    messages: [],
-                    isAcceptingMessages: true,
-                },
+
+                email,
+                username,
+                password: hashedPassword,
+                isVerified: false,
+                verifyCode,
+                verifyCodeExpiry: expiryDate,
+                messages: [],
+                isAcceptingMessages: true,
             });
         }
 
