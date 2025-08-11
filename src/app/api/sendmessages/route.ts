@@ -1,12 +1,17 @@
 import dbConnect from "@/lib/dbConnect";
 import { MessageModel, UserModel } from "@/models/user.model";
+import { log } from "console";
 
 export async function POST(req: Request) {
     try {
         await dbConnect();
         const { username, content } = await req.json();
+        console.log("Request body:", { username, content });
 
         const user = await UserModel.findOne({ username });
+        const alluser = await UserModel.find( );
+
+        console.log("User found:",alluser);
         if (!user) {
             return Response.json({ success: false, message: "User not found" }, { status: 404 });
         }
