@@ -7,8 +7,9 @@ import React from 'react'
 
 function Navbar() {
     const {data:session} = useSession();
-    console.log(session);
     const user:User = session?.user as User;
+    console.log('user in navbar', user);
+    
 
   return (
     <nav className="p-4 md:p-6 shadow-md bg-gray-900 text-white">

@@ -63,7 +63,7 @@ function DashBoard() {
       try {
         setIsLoading(true);
         setIsSwitched(false);
-        const response = await axios.get("/api/messages");
+        const response = await axios.get("/api/getmessages");
         setMessages(response.data);
       } catch (error) {
         toast.error("Failed to fetch messages.");
@@ -86,6 +86,19 @@ function DashBoard() {
     }
   }, [fetchAcceptedMessages, fetchMessages, session, setValue]);
 
+
+
+  console.log("session",session?.user);
+  if (!session?.user) {
+    
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <h1 className="text-2xl font-bold">
+          Please log in to access your dashboard
+        </h1>
+      </div>
+    );
+  }
   const { username } = session?.user as User;
   const baseUrl =
     typeof window !== "undefined" ? window.location.origin : "";
@@ -95,17 +108,6 @@ function DashBoard() {
     navigator.clipboard.writeText(profileUrl);
     toast.success("Profile URL copied to clipboard!");
   };
-
-  if (!session?.user) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <h1 className="text-2xl font-bold">
-          Please log in to access your dashboard
-        </h1>
-      </div>
-    );
-  }
-
   return (
     <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
       <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
@@ -130,7 +132,7 @@ function DashBoard() {
           {...register("acceptMessages")}
           checked={acceptMessages}
           onCheckedChange={handleSwitchChange}
-          disabled={isSwitched}
+          disabled={isLoading}
         />
         <span className="ml-2">
           Accept Messages: {acceptMessages ? "On" : "Off"}

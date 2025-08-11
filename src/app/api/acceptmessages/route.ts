@@ -79,7 +79,7 @@ export async function GET(req: Request) {
             {
                 success: true,
                 message: "User data retrieved successfully",
-                data: userData.isAcceptingMessages,
+                isAcceptingMessages: userData.isAcceptingMessages,
             },
             { status: 200 }
         );

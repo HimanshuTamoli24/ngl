@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { env } from "@/env";
+import { use } from "react";
 
 
 export const authOptions: NextAuthOptions = {
@@ -13,6 +14,7 @@ export const authOptions: NextAuthOptions = {
             id: "credentials",
             name: "Credentials",
             credentials: {
+                username: { label: "Username", type: "text", placeholder: "your_username" },
                 email: { label: "Email", type: "text", placeholder: "you@example.com" },
                 password: { label: "Password", type: "password" }
             },
