@@ -64,7 +64,8 @@ function DashBoard() {
         setIsLoading(true);
         setIsSwitched(false);
         const response = await axios.get("/api/getmessages");
-        setMessages(response.data);
+        setMessages(response.data.data);
+
       } catch (error) {
         toast.error("Failed to fetch messages.");
         console.error("Error fetching messages:", error);
@@ -88,7 +89,6 @@ function DashBoard() {
 
 
 
-  console.log("session",session?.user);
   if (!session?.user) {
     
     return (

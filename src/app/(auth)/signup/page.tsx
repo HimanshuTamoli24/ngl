@@ -48,7 +48,6 @@ function Signup() {
                 setUsernameMessage("")
                 try {
                     const res = await axios.get(`/api/unique-username?username=${username}`)
-                    console.log("Username availability check:", res.data);
 
                     setUsernameMessage(res.data.message)
                 } catch (error) {

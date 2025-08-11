@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     await dbConnect();
     try {
         const { email, username, password } = await request.json();
-        console.log("Sign up request received:", { email, username, password });
+     
 
         // is user existing
         const isExistingUser = await UserModel.findOne({ email });

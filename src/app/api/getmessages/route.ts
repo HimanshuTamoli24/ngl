@@ -16,11 +16,19 @@ export async function GET(req: Request) {
                 { status: 401 }
             );
         }
-        const userId = new mongoose.Types.ObjectId(user._id);
+        const userId = new mongoose.Types.ObjectId(user.id);
         try {
             const user = await UserModel.aggregate([
                 {
                     $match: { _id: userId }
+                },
+                {
+                    $lookup:{
+                        from:"messages",
+                        localField:"messages",
+                        foreignField:"_id",
+                        as:"messages"
+                    }
                 },
                 {
                     $unwind: "$messages"
@@ -35,7 +43,7 @@ export async function GET(req: Request) {
                     }
                 }
             ])
-            console.log("user of pipleine ", user);
+            // console.log("user of pipleine ", user);
             if (!user || user.length === 0) {
                 return Response.json(
                     { success: false, message: "No messages found" },

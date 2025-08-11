@@ -8,7 +8,7 @@ import React from 'react'
 function Navbar() {
     const {data:session} = useSession();
     const user:User = session?.user as User;
-    console.log('user in navbar', user);
+ 
     
 
   return (

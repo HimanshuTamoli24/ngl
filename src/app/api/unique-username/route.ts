@@ -22,7 +22,7 @@ export async function GET(req: Request) {
         }
 
         const results = usernameSchema.safeParse({ username: rawUsername });
-        console.log("Results of username validation:", results);
+
 
         if (!results.success) {
             return Response.json({
