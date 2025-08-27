@@ -18,7 +18,7 @@ export async function POST(req: Request) {
             );
         }
 
-        const userId = user._id;
+        const userId = user.id;
         const { acceptMessages } = await req.json();
 
         const updatedUser = await UserModel.findByIdAndUpdate(
@@ -65,7 +65,7 @@ export async function GET(req: Request) {
             );
         }
 
-        const userId = user._id;
+        const userId = user.id;
         const userData = await UserModel.findById(userId);
 
         if (!userData) {

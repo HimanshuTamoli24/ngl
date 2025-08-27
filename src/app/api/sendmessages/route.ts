@@ -1,6 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
 import { MessageModel, UserModel } from "@/models/user.model";
-import { log } from "console";
 
 export async function POST(req: Request) {
     try {
@@ -8,7 +7,7 @@ export async function POST(req: Request) {
         const { username, content } = await req.json();
 
         const user = await UserModel.findOne({ username });
-        
+
         if (!user) {
             return Response.json({ success: false, message: "User not found" }, { status: 404 });
         }
@@ -18,7 +17,7 @@ export async function POST(req: Request) {
         }
 
         // 1️⃣ Create message in Message collection
-        const msgDoc = await MessageModel.create({
+        const msgDoc :any= await MessageModel.create({
             content,
             createdAt: new Date()
         });

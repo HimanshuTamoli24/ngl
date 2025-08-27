@@ -22,7 +22,7 @@ export async function DELETE(
 
     try {
         const updateResult = await UserModel.updateOne(
-            { _id: _user._id },
+            { _id: _user.id },
             { $pull: { messages: { _id: messageId } } }
         );
 
