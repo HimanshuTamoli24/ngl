@@ -5,18 +5,27 @@ import { env } from "@/env";
 const resend = new Resend(env.RESEND_API_KEY);
 
 async function sendVerificationEmail(
-    username: string,
     email: string,
+    username: string,
     verifyCode: string
 ): Promise<ApiResponse> {
     try {
-        await resend.emails.send({
+        const { error, data } = await resend.emails.send({
             from: 'onboarding@resend.dev',
             to: email,
             subject: 'verification code',
             react: VerificationEmail({ username: username, otp: verifyCode }),
         });
+        console.log("Email sent:", data);
 
+        if (error) {
+            console.error("Error sending email:", error);
+            return {
+                success: false,
+                message: "Failed to send verification email.",
+            };
+        }
+        
         return {
             success: true,
             message: "Verification email sent successfully.",
