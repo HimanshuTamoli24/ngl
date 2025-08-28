@@ -1,89 +1,97 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react';
-import axios, { AxiosError } from 'axios';
-import dayjs from 'dayjs';
-import { X } from 'lucide-react';
-;
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { ApiResponse } from '@/types/ApiResponse';
-import { toast } from 'sonner';
-import { Message } from '@/models/user.model';
+import React, { useState } from "react";
+import axios, { AxiosError } from "axios";
+import dayjs from "dayjs";
+import { X, CheckCircle, InfoIcon, Trash } from "lucide-react";
+import { Card } from "../retroui/Card";
+import { Alert } from "../retroui/Alert";
+import { Button } from "@/components/retroui/Button";
+import { Dialog } from "@/components/retroui/Dialog";
+import { Text } from "@/components/retroui/Text";
+
+import { toast } from "sonner";
+import { Message } from "@/models/user.model";
+import { ApiResponse } from "@/types/ApiResponse";
+
 type MessageCardProps = {
-    message: Message;
+    message: Message & { status?: "success" | "info" | "error" | "warning" };
     onMessageDelete: (messageId: string) => void;
 };
 
+
 export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
-    console.log(message);
-    
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
     const handleDeleteConfirm = async () => {
         try {
             const response = await axios.delete<ApiResponse>(
                 `/api/deletemessage/${message._id}`
             );
-            toast.success(response.data.message || 'Message deleted successfully');
+            toast.success(response.data.message || "Message deleted successfully");
             onMessageDelete(message._id as string);
 
+            // Close the dialog after deletion
+            setIsDialogOpen(false);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const axiosError = error as AxiosError<ApiResponse>;
-                const errorMessage = axiosError.response?.data.message || 'Failed to delete message';
-                toast.error(errorMessage);
+                toast.error(
+                    axiosError.response?.data.message || "Failed to delete message"
+                );
             } else {
-                toast.error('An unexpected error occurred');
+                toast.error("An unexpected error occurred");
             }
-        
         }
     };
 
     return (
-        <Card className="card-bordered">
-            <CardHeader>
-                <div className="flex justify-between items-center">
-                    <CardTitle>{message.content}</CardTitle>
-                    <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                            <Button variant='destructive'>
-                                <X className="w-5 h-5" />
+        <Card>
+            <Card.Header className="relative p-4">
+                <Card.Description className="pr-24 font-semibold">{message.content}</Card.Description>
+
+                <div className="absolute top-4 right-4">
+                    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                        <Dialog.Trigger asChild>
+                            <Button className="flex items-center bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">
+                                <Trash className="h-4 w-4 mr-1" />
                             </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                            <AlertDialogHeader>
-                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                                <AlertDialogDescription>
-                                    This action cannot be undone. This will permanently delete
-                                    this message.
-                                </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                                <AlertDialogCancel>
+                        </Dialog.Trigger>
+
+                        <Dialog.Content className="max-w-sm rounded-lg p-6">
+                            <Dialog.Header>
+                                <Text as="h5" className="font-semibold text-lg">
+                                    Confirm your action
+                                </Text>
+                            </Dialog.Header>
+
+                            <div className="mt-4 space-y-3 text-gray-700">
+                                <p>Are you sure you want to delete this item?</p>
+                                <p className="text-sm text-gray-500">This action cannot be undone.</p>
+                            </div>
+
+                            <div className="mt-6 flex justify-end gap-2">
+                                <Button
+                                    onClick={() => setIsDialogOpen(false)}
+                                    className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
+                                >
                                     Cancel
-                                </AlertDialogCancel>
-                                <AlertDialogAction onClick={handleDeleteConfirm}>
-                                    Continue
-                                </AlertDialogAction>
-                            </AlertDialogFooter>
-                        </AlertDialogContent>
-                    </AlertDialog>
+                                </Button>
+                                <Button
+                                    onClick={handleDeleteConfirm}
+                                    className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                                >
+                                    Confirm
+                                </Button>
+                            </div>
+                        </Dialog.Content>
+                    </Dialog>
                 </div>
-                <div className="text-sm">
-                    {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}
-                </div>
-            </CardHeader>
-            <CardContent></CardContent>
+            </Card.Header>
+
+            <Card.Content className="text-sm text-gray-500">
+                {dayjs(message.createdAt).format("MMM D, YYYY h:mm A")}
+            </Card.Content>
         </Card>
     );
 }
