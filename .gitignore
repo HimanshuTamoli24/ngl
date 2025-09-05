@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+GitHub.copilot-1.364.0.vsix
+GitHub.copilot-1.364.0 (1).vsix
