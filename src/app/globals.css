@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
+@font-face {
+  font-family: "BelganAesthetic";
+  src: url("/belgan-aesthetic.regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -217,7 +222,25 @@ body {
   overflow-y: hidden;
 }
 
-
 ::selection {
-  background:  rgba(243, 243, 3, 0.575) ;
+  background: rgba(243, 243, 3, 0.575);
+  color:black;
+}
+
+* {
+  font-family: 'BelganAesthetic', sans-serif;
+}
+
+
+/* Hide scrollbar in Webkit browsers (Chrome, Safari) */
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* Firefox */
+.hide-scrollbar {
+  overflow-y: scroll; 
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE 10+ */
 }
