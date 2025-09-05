@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,8 +15,9 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { User } from "next-auth";
 import { Message } from "@/models/user.model";
-import Link from "next/link";
 import Footer from "@/components/customui/Footer";
+import { Input } from "@/components/retroui/Input";
+import ProfileUrl from "@/components/customui/ProfileUrl";
 
 function DashBoard() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -95,14 +96,7 @@ function DashBoard() {
     );
   }
 
-  const { username } = session?.user as User;
-  const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
-  const profileUrl = `${baseUrl}/u/${username}`;
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(profileUrl);
-    toast.success("Profile URL copied!");
-  };
 
   return (
     <div className="my-8 mx-4 md:mx-auto max-w-6xl space-y-6">
@@ -111,17 +105,9 @@ function DashBoard() {
       </h1>
 
       {/* Profile Link Card */}
-      <Card className="p-4 w-full" >
+      <Card className="p-4 w-full  " >
         <h2 className="text-lg font-semibold mb-2">Your Unique Link</h2>
-        <div className="flex gap-2">
-          <input
-            type="text"
-            value={profileUrl}
-            disabled
-            className="flex-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <Button onClick={copyToClipboard}>Copy</Button>
-        </div>
+        <ProfileUrl classname="w-full "/>
       </Card>
 
       {/* Accept Messages Card */}
@@ -155,7 +141,7 @@ function DashBoard() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {messages.map((message, index) => (
             <MessageCard
-              key={ index}
+              key={index}
               message={message}
               onMessageDelete={handleDeleteMessage}
             />
@@ -167,8 +153,6 @@ function DashBoard() {
 
       <Separator />
 
-      {/* CTA */}
-      <Footer/>
     </div>
   );
 }
