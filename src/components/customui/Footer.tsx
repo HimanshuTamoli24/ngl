@@ -1,31 +1,34 @@
-import { useSession } from 'next-auth/react';
+'use client';
+
 import Link from 'next/link';
-import React from 'react';
+import { Github, Twitter, Mail } from 'lucide-react';
 
-function Footer() {
-  const { data: session } = useSession();
-
+export default function Footer() {
   return (
-    <div className="text-center py-4 border-t border-gray-200">
-      {session?.user ? (
-        <p className="text-gray-700">
-          Welcome back, <span className="font-medium capitalize text-blue-500">{session.user.username || session.user.email}</span>!
-        </p>
-      ) : (
-        <>
-          <p className="text-gray-700 mb-2">
-            Want to receive anonymous messages?
-          </p>
-          <Link
-            href="/signup"
-            className="text-blue-600 font-medium hover:underline"
-          >
-            Create your profile now!
-          </Link>
-        </>
-      )}
+<footer className="w-full border-2 border-black bg-white shadow-[4px_4px_0px_black] ">
+  <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    {/* Left side */}
+    <p className="font-bold text-black">
+      © {new Date().getFullYear()} Askly
+    </p>
+
+    {/* Links */}
+    <div className="flex gap-4">
+      <a
+        href="/privacy"
+        className="border-2 border-black  bg-yellow-300 px-3 py-1 font-bold shadow-[2px_2px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition"
+      >
+        Privacy
+      </a>
+      <a
+        href="/terms"
+        className="border-2 border-black bg-yellow-300 px-3 py-1 font-bold shadow-[2px_2px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition"
+      >
+        Terms
+      </a>
     </div>
+  </div>
+</footer>
+
   );
 }
-
-export default Footer;
