@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import axios, { AxiosError } from "axios";
 import dayjs from "dayjs";
-import { X, CheckCircle, InfoIcon, Trash } from "lucide-react";
+import {  Trash } from "lucide-react";
 import { Card } from "../retroui/Card";
-import { Alert } from "../retroui/Alert";
+
 import { Button } from "@/components/retroui/Button";
 import { Dialog } from "@/components/retroui/Dialog";
 import { Text } from "@/components/retroui/Text";
