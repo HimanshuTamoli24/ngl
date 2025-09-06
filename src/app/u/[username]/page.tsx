@@ -19,6 +19,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { messageSchema } from '@/schemas/messageSchema';
 import { Button } from '@/components/retroui/Button';
+import { toast, Toaster } from 'sonner';
 
 
 export default function SendMessage() {
@@ -43,65 +44,71 @@ export default function SendMessage() {
     try {
       await axios.post<ApiResponse>('/api/sendmessages', { ...data, username });
       form.reset({ content: '', createdAt: new Date() });
+      toast.success("Message sent Successfully")
     } catch (err) {
       const axiosError = err as AxiosError<ApiResponse>;
       setError(axiosError.response?.data.message || 'Failed to send message');
+      toast.error(axiosError.response?.data.message || "Failed to send message, try again later");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 bg-white rounded-xl shadow-lg max-w-4xl">
-      {/* Header */}
-      <h1 className="text-4xl text-center font-bold mb-8 italic text-gray-800">
-        Send Anonymous Message to @{username}
-      </h1>
+    <div className="flex justify-center items-start min-h-screen bg-gray-50 py-10 px-4">
+      <div className="w-full max-w-2xl bg-white rounded-2xl hover:shadow-xs border shadow-s p-8 flex flex-col gap-6">
+        {/* Header */}
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-800 italic">
+          Send Anonymous Message to
+          <span className="text-blue-600">@{username}</span>
+        </h1>
 
-      {/* Form */}
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="mb-6">
-          <FormField
-            control={form.control}
-            name="content"
-            render={({ field }) => (
-              <FormItem className="flex items-center gap-3">
-                <FormControl className="flex-1">
-                  <Textarea
-                    placeholder="Write your anonymous message here..."
-                    className="resize-none h-12 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    {...field}
-                  />
-                </FormControl>
-                <Button
-                  type="submit"
-                  disabled={isLoading || !messageContent}
-                  className="h-12 flex items-center justify-center px-6 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-                >
-                  {isLoading && <Loader2 className="text-center w-fit animate-spin  m-auto" />}
-                  <Send className={`${isLoading ? 'hidden' : 'visible'}`} />
-                </Button>
-              </FormItem>
-            )}
-          />
-        </form>
-      </Form>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-            
-<div style={{ width: '100%', height: '600px', position: 'relative' }}>
+        {/* Form */}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
+            <FormField
+              control={form.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-2">
+                  <FormControl>
+                    <Textarea
+                      placeholder="Write your anonymous message..."
+                      {...field}
+                      className="resize-y min-h-[120px] px-4 py-3 border border-blue-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all"
+                    />
+                  </FormControl>
+                  {error && <p className="text-red-500 text-sm">{error}</p>}
+                  <Button
+                    variant={"outline"}
+                    type="submit"
+                    disabled={isLoading || !field.value}
+                    className="w-full flex justify-center items-center py-3 rounded-xl bg-blue-600  hover:text-white text-black font-medium transition-colors"
+                  >
+                    {isLoading ? <Loader2 className="animate-spin w-5 h-5" /> : <Send className="w-5 h-5" />}
+                    <span className="ml-2">{isLoading ? 'Sending...' : 'Send'}</span>
+                  </Button>
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
 
-</div>
-      <Separator className="my-6" />
+        <Separator className="my-4" />
 
-      {/* Call to Action */}
-      <div className="text-center">
-        <p className="text-gray-700 mb-2">
-          Want to receive anonymous messages?
-        </p>
-        <Link href="/signup" className="text-blue-600 hover:underline font-medium">
-          Create your profile now!
-        </Link>
+        {/* Call to Action */}
+        <div className="text-center">
+          <p className="text-gray-700 mb-2">Want to receive anonymous messages?</p>
+          <Link
+            href="/signup"
+            className="inline-block   text-black px-6 py-3 rounded-xl font-medium tansition-colors"
+          >
+            <Button className="bg-blue-600  hover:text-white text-black" variant={"outline"}>Create Your Profile</Button>
+          </Link>
+        </div>
       </div>
     </div>
+
+
   );
 }
