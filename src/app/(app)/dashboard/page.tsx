@@ -107,7 +107,7 @@ function DashBoard() {
       {/* Profile Link Card */}
       <Card className="p-4 w-full  " >
         <h2 className="text-lg font-semibold mb-2">Your Unique Link</h2>
-        <ProfileUrl classname="w-full "/>
+        <ProfileUrl classname="w-full " />
       </Card>
 
       {/* Accept Messages Card */}
@@ -137,11 +137,12 @@ function DashBoard() {
       </div>
 
       {/* Messages Grid */}
+      {/* Messages Grid */}
       {messages.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {messages.map((message, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {messages.map((message) => (
             <MessageCard
-              key={index}
+              key={message._id}
               message={message}
               onMessageDelete={handleDeleteMessage}
             />
@@ -150,6 +151,7 @@ function DashBoard() {
       ) : (
         <p className="text-center text-gray-500 mt-4">No messages to display.</p>
       )}
+
 
       <Separator />
 
