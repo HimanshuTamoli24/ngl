@@ -193,54 +193,47 @@
   --border: #3a3a3a;
 } /* General vertical scrollbar styling */
 
-/* Vertical scrollbar (retro style) */
-::-webkit-scrollbar {
-  width: 2px; /* vertical thickness */
-  height: 0px; /* kill horizontal */
+  /* ===== Global Reset ===== */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Hide horizontal scrollbar */
-::-webkit-scrollbar:horizontal {
-  display: none;
-}
-
-/* Firefox fallback */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #0a0800 #eaeaeaa1;
-}
-
-html,
-body {
-  overflow-x: hidden; /* block horizontal */
-  overflow-y: auto;
-}
-
-/* Utility to hide scrollbars completely */
-.scroll-hidden {
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
-::selection {
-  background: rgba(243, 243, 3, 0.575);
-  color:black;
-}
-
-* {
+html, body {
+  overflow-x: hidden;   /* block horizontal scroll */
+  overflow-y: auto;     /* allow vertical scroll */
   font-family: 'BelganAesthetic', sans-serif;
 }
 
-
-/* Hide scrollbar in Webkit browsers (Chrome, Safari) */
-.hide-scrollbar::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
+/* ===== Custom Scrollbar (Chrome / Brave) ===== */
+::-webkit-scrollbar {
+  width: 4px;          /* vertical thickness */
+  height: 0;           /* kill horizontal */
 }
 
-/* Firefox */
+::-webkit-scrollbar:horizontal {
+  display: none;       /* hide horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0a0800;
+  border-radius: 12px;
+}
+
+/* ===== Selection Style ===== */
+::selection {
+  background: rgba(243, 243, 3, 0.575);
+  color: black;
+}
+
+/* ===== Utility: hide vertical scrollbar but keep scroll ===== */
 .hide-scrollbar {
-  overflow-y: scroll; 
-  scrollbar-width: none;
-  -ms-overflow-style: none; /* IE 10+ */
+  overflow-y: scroll;   /* still scrollable */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;        /* Chrome / Brave */
 }
