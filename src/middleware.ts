@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { env } from "@/env";
 
 export const config = {
     matcher: ["/dashboard/:path*", "/plans", "/verify/:path*"],
@@ -8,11 +9,12 @@ export const config = {
 export async function middleware(request: NextRequest) {
     const token = await getToken({
         req: request,
-        secret: process.env.NEXTAUTH_SECRET,
+        secret: env.NEXTAUTH_SECRET,
     });
 
     const { pathname } = request.nextUrl;
-
+    console.log("tokens middleware",token);
+    
     // Block private pages if not signed in
     if (
         !token &&

@@ -127,7 +127,7 @@ export default function Home() {
             >
               Spill the tea, not your identity.
             </div>
-            {data?.user ? <ProfileUrl classname='' /> :
+            {data?.user ? <ProfileUrl classname='w-full' /> :
               <div className="flex  sm:w-3xl gap-2 justify-center items-center mt-5">
                 <div className="w-full">
                   <Input
