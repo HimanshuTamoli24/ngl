@@ -51,7 +51,6 @@ export default function Home() {
     const min = v1;
     const max = v2;
     const num = Math.ceil(Math.random() * (max - min) + min)
-    console.log("num", num);
     return Number(num);
   }
 
@@ -197,8 +196,8 @@ export default function Home() {
                   separator=","
                   duration={1}
                   className="text-5xl md:text-6xl  lg:text-8xl font-head text-black"
-                  onStart={() => console.log("")}
-                  onEnd={() => console.log("")}
+                  onStart={() =>("")}
+                  onEnd={() => ("")}
 
                 />
                 <span className="mt-1 text-sm text-gray-900 font-mono capitalize">Total users</span>
@@ -210,8 +209,8 @@ export default function Home() {
                   separator=","
                   duration={1}
                   className="text-5xl md:text-6xl  lg:text-8xl font-head text-black"
-                  onStart={() => console.log("")}
-                  onEnd={() => console.log("")}
+                  onStart={() => ("")}
+                  onEnd={() => ("")}
 
                 />
                 <span className="mt-1 text-sm text-gray-900 font-mono capitalize">Anon messages</span>
@@ -223,8 +222,8 @@ export default function Home() {
                   separator=","
                   duration={1}
                   className="text-5xl md:text-6xl  lg:text-8xl font-head text-black"
-                  onStart={() => console.log("")}
-                  onEnd={() => console.log("")}
+                  onStart={() => ("")}
+                  onEnd={() => ("")}
 
                 />
                 <span className="mt-1 text-sm text-gray-900 font-mono capitalize">secretly proposal sent </span>

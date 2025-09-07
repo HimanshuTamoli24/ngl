@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,11 +13,11 @@ import { Button } from "@/components/retroui/Button";
 import { Card } from "@/components/retroui/Card";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
-import { User } from "next-auth";
+
 import { Message } from "@/models/user.model";
-import Footer from "@/components/customui/Footer";
-import { Input } from "@/components/retroui/Input";
 import ProfileUrl from "@/components/customui/ProfileUrl";
+import { AreaChart } from "@/components/retroui/charts/AreaChart";
+import ChartStyleDefault from "@/components/customui/Customchart";
 
 function DashBoard() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -136,15 +136,19 @@ function DashBoard() {
         </Button>
       </div>
 
-      {/* Messages Grid */}
-      {/* Messages Grid */}
+      <div className="flex sm:flex-row flex-col">
+      <ChartStyleDefault messages={messages} />
+
+      </div>
+      <Separator />
       {messages.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {messages.map((message) => (
+          {messages.map((message, index) => (
             <MessageCard
-              key={message._id}
+              key={String(message._id)}
               message={message}
               onMessageDelete={handleDeleteMessage}
+              index={index}
             />
           ))}
         </div>
