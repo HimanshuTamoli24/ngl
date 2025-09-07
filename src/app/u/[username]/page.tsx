@@ -19,18 +19,17 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { messageSchema } from '@/schemas/messageSchema';
 import { Button } from '@/components/retroui/Button';
-import { toast, Toaster } from 'sonner';
+import { toast } from 'sonner';
 
 
 export default function SendMessage() {
   const params = useParams<{ username: string }>();
   const username = params.username;
 
-  const form = useForm<z.infer<typeof messageSchema>>({
+  const form = useForm<z.input<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
     defaultValues: {
       content: '',
-      createdAt: new Date(),
     },
   });
 
@@ -38,12 +37,12 @@ export default function SendMessage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const onSubmit: SubmitHandler<z.infer<typeof messageSchema>> = async (data) => {
+  const onSubmit: SubmitHandler<z.input<typeof messageSchema>> = async (data) => {
     setIsLoading(true);
     setError(null);
     try {
       await axios.post<ApiResponse>('/api/sendmessages', { ...data, username });
-      form.reset({ content: '', createdAt: new Date() });
+      form.reset({ content: '' });
       toast.success("Message sent Successfully")
     } catch (err) {
       const axiosError = err as AxiosError<ApiResponse>;

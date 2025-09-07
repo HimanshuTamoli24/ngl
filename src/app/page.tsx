@@ -24,22 +24,22 @@ export default function Home() {
     {
       text: "Whom did you first cheat in li (be honest)?",
       rotate: "-6deg",
-      pos: "top-40 left-10"
+      pos: "top-40 left-10 sm:left-10"
     },
     {
       text: "Which city would you bunk college to visit?",
       rotate: "6deg",
-      pos: "top-40 right-10"
+      pos: "top-40 right-10  sm:right-10"
     },
     {
       text: "What’s the craziest excuse you gave to skip class?",
       rotate: "-8deg",
-      pos: "bottom-20 left-12"
+      pos: "bottom-20 left-12 sm:left-12"
     },
     {
       text: "Who’s the friend you’d never trust with secrets?",
-      rotate: "8deg",
-      pos: "bottom-20 right-12"
+      rotate: "8deg", 
+      pos: "bottom-20 right-12 sm:right-12 "
     },
   ];
 
@@ -61,7 +61,7 @@ export default function Home() {
   }, []);
   return (
     <SmoothSection>
-      <div className={`relative w-full min-h-screen  border`}>
+      <div className={`relative w-full min-h-screen  `}>
 
         <div
           style={{
@@ -85,9 +85,9 @@ export default function Home() {
           />
         </div>
 
-        <main className=" border  h-screen  snap-y snap-mandatory hide-scrollbar">
+        <main className="   h-screen  snap-y snap-mandatory hide-scrollbar">
           <motion.section
-            className="h-screen border snap-start flex flex-col items-center justify-center text-center px-4"
+            className="h-screen  snap-start flex flex-col items-center  text-center px-4"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -102,7 +102,7 @@ export default function Home() {
                 height={250}
                 src="/biggroup.jpeg"
                 alt="Picture of the author"
-                className=' w-xs sm:w-[18rem]' />
+                className=' w-[12rem] sm:w-[18rem]' />
 
             </div>
 
@@ -128,7 +128,7 @@ export default function Home() {
               Spill the tea, not your identity.
             </div>
             {data?.user ? <ProfileUrl classname='w-xl' /> :
-              <div className="flex w-xl sm:w-3xl gap-2 justify-center items-center mt-5">
+              <div className="flex  sm:w-3xl gap-2 justify-center items-center mt-5">
                 <div className="w-full">
                   <Input
 
@@ -142,17 +142,18 @@ export default function Home() {
               </div>
 
             }
-            <div className="flex items-center gap-2 text-gray-600 mt-3.5 ">
-              <MessageCircleWarning className="w-5 h-5 text-xs" />
-              <p className="text-xs ">
-                Share this link with cheeks so they can send you messages anonymously.
+            <div className="flex items-start justify-center sm:gap-2 text-gray-600 mt-3.5">
+              <MessageCircleWarning className="w-4 h-4 flex-shrink-0 mt-0.5" />
+              <p className="text-xs leading-snug max-w-xs sm:max-w-sm text-center sm:text-left">
+                Share this link with friends so they can send you messages anonymously.
               </p>
             </div>
+
 
           </motion.section>
 
           <motion.section
-            className="h-screen border snap-start flex flex-col justify-end pb-2.5 items-center text-center px-4"
+            className="h-screen  snap-start flex flex-col  pb-2.5 items-center text-center px-4"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
@@ -162,14 +163,13 @@ export default function Home() {
             }}
             viewport={{ once: true }}
           >
-            <motion.p
-              className="text-sm sm:text-base text-gray-500 mt-2 mb-6 max-w-md"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            <motion.h1
+              className="text-sm md:text-xl lg:text-2xl font-bold text-black drop-shadow-[0_0_15px_yellow] mb-6"
+              animate={{ textShadow: ["0 0 10px yellow", "0 0 20px yellow", "0 0 10px yellow"] }}
+              transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
             >
               See what people are saying — messages scroll below in real time.
-            </motion.p>
+            </motion.h1>
             <div className="w-full max-w -4xl">
               <ThreeDMarqueeDemo />
             </div>
@@ -177,61 +177,88 @@ export default function Home() {
 
 
           <motion.section
-            className="h-screen snap-start flex flex-col justify-center items-center text-center px-4"
+            className="h-screen snap-start flex flex-col sm:justify-evenly items-center text-center px-4"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1.5,
-              delay: 0.2,
-              ease: "easeInOut"
-            }}
+            transition={{ duration: 1.5, delay: 0.2, ease: "easeInOut" }}
             viewport={{ once: true }}
           >
-            <h1 style={{ textShadow: '2px 4px 8px yellow', color: '#111' }} className='text-4xl my-4 '>ALL MONTHLY STATS</h1>
-            <div className=' grid gap-y-4.5 sm:grid-cols-3 justify-evenly w-full '>
-              <div className='flex flex-col justify-center items-center '>
-                <CountUp
-                  from={0}
-                  to={users}
-                  separator=","
-                  duration={1}
-                  className="text-5xl md:text-6xl  lg:text-8xl font-head text-black"
-                  onStart={() =>("")}
-                  onEnd={() => ("")}
+            {/* Heading glow pulse */}
+            <motion.h1
+              className="text-2xl md:text-3xl lg:text-4xl font-bold text-black drop-shadow-[0_0_15px_yellow] mb-6"
+              animate={{ textShadow: ["0 0 10px yellow", "0 0 20px yellow", "0 0 10px yellow"] }}
+              transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
+            >
+              All the Numbers We Couldn’t Hide (Like Your Lies)
+            </motion.h1>
 
+            <div className='flex items-center justify-center'>
+              {/* Image at the top, animated */}
+              <motion.div
+                className="mb-8 mr-4"
+                animate={{ y: [1, -1, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Image
+                  width={200}
+                  height={200}
+                  src="https://cdn.prod.website-files.com/5e51c674258ffe10d286d30a/5e5361939b55b0fd0757e47d_peep-standing-11.png"
+                  alt="Monthly Stats Illustration"
+                  className="w-48 h-64 md:w-64 md:h-72 border-b-4 "
                 />
-                <span className="mt-1 text-sm text-gray-900 font-mono capitalize">Total users</span>
-              </div>
-              <div className='flex flex-col justify-center items-center '>
-                <CountUp
-                  from={0}
-                  to={messages}
-                  separator=","
-                  duration={1}
-                  className="text-5xl md:text-6xl  lg:text-8xl font-head text-black"
-                  onStart={() => ("")}
-                  onEnd={() => ("")}
+              </motion.div>
 
-                />
-                <span className="mt-1 text-sm text-gray-900 font-mono capitalize">Anon messages</span>
-              </div>
-              <div className='flex flex-col justify-center items-center '>
-                <CountUp
-                  from={0}
-                  to={proposals}
-                  separator=","
-                  duration={1}
-                  className="text-5xl md:text-6xl  lg:text-8xl font-head text-black"
-                  onStart={() => ("")}
-                  onEnd={() => ("")}
+              {/* Stats counters */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-5xl justify-items-center">
+                <div className="flex flex-col justify-center items-center">
+                  <CountUp
+                    from={0}
+                    onStart={() => { }}
+                    onEnd={() => { }}
+                    to={users}
+                    separator=","
+                    duration={1.2}
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold text-black"
+                  />
+                  <span className="mt-2 text-sm md:text-base text-gray-900 font-mono capitalize">
+                    Total Users
+                  </span>
+                </div>
 
-                />
-                <span className="mt-1 text-sm text-gray-900 font-mono capitalize">secretly proposal sent </span>
+                <div className="flex flex-col justify-center items-center">
+                  <CountUp
+                    onStart={() => { }}
+                    onEnd={() => { }}
+                    from={0}
+                    to={messages}
+                    separator=","
+                    duration={1.2}
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold text-black"
+                  />
+                  <span className="mt-2 text-sm md:text-base text-gray-900 font-mono capitalize">
+                    Anonymous Messages
+                  </span>
+                </div>
+
+                <div className="flex flex-col justify-center items-center">
+                  <CountUp
+                    from={0}
+                    onStart={() => { }}
+                    onEnd={() => { }}
+                    to={proposals}
+                    separator=","
+                    duration={1.2}
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold text-black"
+                  />
+                  <span className="mt-2 text-sm md:text-base text-gray-900 font-mono capitalize">
+                    Proposals Sent
+                  </span>
+                </div>
               </div>
             </div>
-
-
           </motion.section>
+
+
 
           <section className="relative h-screen snap-start w-full flex flex-col justify-center items-center overflow-hidden">
             {/* Floating bubbles */}
