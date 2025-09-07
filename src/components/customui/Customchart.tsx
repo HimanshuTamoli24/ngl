@@ -7,11 +7,19 @@ export default function ChartStyleDefault({ messages }: { messages: Message[] })
   const data = getMonthlyMessageData(messages);
 
   return (
-    <AreaChart
-      data={data}
-      index="month"
-      categories={["count"]}
-    />
+    <div className="flex flex-col w-full ">
+  <h1 className="text-black text-2xl px-14 font-bold mb-4 text-shadow-[0_0_10px_yellow] animate-fadeIn">
+  Inbox Activity: Monthly
+  </h1>
+
+  <AreaChart
+    data={data}
+    index="month"
+    categories={["count"]}
+  />
+</div>
+
+  
   );
 }
 
@@ -28,7 +36,7 @@ function getMonthlyMessageData(messages: Message[]) {
     const date = dayjs(msg.createdAt);
     if (date.year() === currentYear) {
       const key = date.format("MMM");
-     
+
       counts[key] = (counts[key] || 0) + 1;
     }
   }
