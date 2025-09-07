@@ -1,6 +1,33 @@
 {
-  "name": "ngl",
-  "version": "0.1.0",
+  "name": "askly",
+  "version": "1.0.0",
+  "description": "Askly - The ultimate fun platform for sending anonymous text messages! Share secrets, ask questions, and have entertaining conversations without revealing your identity.",
+  "keywords": [
+    "askly",
+    "anonymous text messages",
+    "fun messages",
+    "entertainment",
+    "secret questions",
+    "anonymous chat",
+    "fun platform",
+    "text messages",
+    "anonymous fun",
+    "entertainment platform",
+    "nextjs",
+    "typescript",
+    "mongodb",
+    "nextauth"
+  ],
+  "author": "HimanshuTamoli",
+  "license": "MIT",
+  "homepage": "https://www.asklyy.tech",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HimanshuTamoli/askly.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HimanshuTamoli/askly/issues"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -H 0.0.0.0",

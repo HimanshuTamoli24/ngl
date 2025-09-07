@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎉 Askly
 
-## Getting Started
+**Fun anonymous text messages platform** - Share secrets, ask questions, and have entertaining conversations without revealing your identity.
 
-First, run the development server:
+[![Askly](https://img.shields.io/badge/Askly-Fun%20Messages-blue?style=for-the-badge&logo=message-circle)](https://www.asklyy.tech)
+[![Next.js](https://img.shields.io/badge/Next.js-15.4.5-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://typescriptlang.org)
+
+## 🚀 Quick Start
 
 ```bash
+# Clone & Install
+git clone https://github.com/HimanshuTamoli/askly.git
+cd askly
+npm install
+
+# Setup Environment
+cp .env.example .env.local
+# Add your MongoDB URI, NextAuth secret, and Resend API key
+
+# Run Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) 🎯
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📱 How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```mermaid
+graph TD
+    A[User Signs Up] --> B[Gets Unique Link]
+    B --> C[Shares Link with Friends]
+    C --> D[Friends Send Anonymous Messages]
+    D --> E[User Receives Messages in Dashboard]
+    E --> F[User Can View/Delete Messages]
+    
+    G[Message Sender] --> H[Visits User's Link]
+    H --> I[Types Anonymous Message]
+    I --> J[Sends Message]
+    J --> K[Stays Completely Anonymous]
+```
 
-## Learn More
+## ✨ Features
 
-To learn more about Next.js, take a look at the following resources:
+- 🔒 **Anonymous Messaging** - Send messages without revealing identity
+- 👤 **Unique Profiles** - Get your own asklyy.tech/u/username link
+- 📊 **Message Analytics** - Track your message stats
+- 🎨 **Modern UI** - Beautiful, responsive design
+- ⚡ **Real-time Updates** - Live message notifications
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Frontend**: Next.js 15, TypeScript, Tailwind CSS
+- **Backend**: Next.js API Routes, NextAuth.js
+- **Database**: MongoDB with Mongoose
+- **Email**: Resend
+- **Deployment**: Vercel
 
-## Deploy on Vercel
+## 📁 Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+askly/
+├── src/app/           # Next.js App Router
+├── src/components/    # React Components
+├── src/lib/          # Utilities & Config
+├── src/models/       # Database Models
+└── public/           # Static Assets
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔧 Environment Variables
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
+RESEND_API_KEY=your_resend_api_key
+```
+
+## 🚀 Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/HimanshuTamoli/askly)
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file
+
+---
+
+<div align="center">
+
+**Made with ❤️ by [HimanshuTamoli](https://github.com/HimanshuTamoli)**
+
+[🌐 Website](https://www.asklyy.tech) • [📧 Support](mailto:support@asklyy.tech)
+
+</div>
