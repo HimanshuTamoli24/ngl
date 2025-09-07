@@ -12,9 +12,9 @@ import { Loader2 } from "lucide-react"
 import axios, { AxiosError } from "axios"
 
 import { Form, FormField, FormItem, FormLabel, FormMessage, FormControl } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/retroui/Input"
+import { Button } from "@/components/retroui/Button"
 import { signupSchema } from "@/schemas/signupSchema"
-import { Button } from "@/components/ui/button"
 
 function Signup() {
     const [username, setUsername] = useState("")
@@ -82,11 +82,11 @@ function Signup() {
     }
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-800">
-            <div className="w-full max-w-md p-8 space-y-8 bg-white/10 rounded-lg shadow-md">
-                <div className="text-center">
-                    <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">join mestery message</h1>
-                    <p className="mb-4">Sign up to continue your secret conversations</p>
+        <div className="flex justify-center items-center min-h-screen">
+            <div className="sm:w-full w-fit border  p-2.5  max-w-md sm:p-5 space-y-8  rounded-lg shadow-md">
+                <div className="text-center pt-3 " >
+                    <h1 className="sm:text-4xl text-3xl font-extrabold tracking-tight lg:text-5xl mb-6 capitalize">join Askly</h1>
+                    <p className="mb-2">Sign up to continue your secret conversations</p>
                 </div>
 
                 <Form {...form}>
@@ -153,16 +153,21 @@ function Signup() {
                         />
 
                         {/* Submit Button */}
-                        <Button type="submit" className="w-full" disabled={isSubmitting}>
+                        <Button
+                            type="submit"
+                            className="w-full flex justify-center items-center"
+                            disabled={isSubmitting}
+                        >
                             {isSubmitting ? (
                                 <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
                                     Please wait
                                 </>
                             ) : (
                                 "Sign Up"
                             )}
                         </Button>
+
                     </form>
                 </Form>
 

@@ -8,14 +8,13 @@ import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { Loader2 } from "lucide-react"
 import { Form, FormField, FormItem, FormLabel, FormMessage, FormControl } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import { Input } from "@/components/retroui/Input"
+import { Button } from "@/components/retroui/Button"
 import { signInSchema } from "@/schemas/signinSchema"
 import { signIn } from "next-auth/react"
 
 function Signin() {
     const router = useRouter()
-
     const form = useForm({
         resolver: zodResolver(signInSchema),
         defaultValues: {
@@ -40,46 +39,56 @@ function Signin() {
     }
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-800">
-            <div className="w-full max-w-md p-8 space-y-8 bg-white/10 rounded-lg shadow-md">
+        <div className="flex justify-center items-center min-h-screen bg-white px-4">
+            {/* Card */}
+            <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg border-2  shadow-lg">
+
                 {/* Header */}
                 <div className="text-center">
-                    <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-                        Join Mystery Message
+                    <h1 className="text-4xl md:text-5xl font-extrabold  tracking-widest mb-4 drop-shadow-[0_0px_5px_yellow]">
+                        Join Askly
                     </h1>
-                    <p className="mb-4">Sign in to continue your secret conversations</p>
+                    <p className="text-black text-sm md:text-base">
+                        Sign in to continue your secret conversations
+                    </p>
                 </div>
 
                 {/* Form */}
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                        {/* Email Field */}
+
+                        {/* Email */}
                         <FormField
                             name="email"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel className=" font-bold">Email</FormLabel>
                                     <FormControl>
-                                        <Input {...field} disabled={form.formState.isSubmitting} />
+                                        <Input
+                                            {...field}
+                                            disabled={form.formState.isSubmitting}
+                                            className="bg-yellow-50 text-black border-2placeholder-yellow-600"
+                                        />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
 
-                        {/* Password Field */}
+                        {/* Password */}
                         <FormField
                             name="password"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Password</FormLabel>
+                                    <FormLabel className=" font-bold">Password</FormLabel>
                                     <FormControl>
                                         <Input
                                             type="password"
                                             {...field}
                                             disabled={form.formState.isSubmitting}
+                                            className="bg-yellow-50 text-black border-2placeholder-yellow-600"
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -90,12 +99,12 @@ function Signin() {
                         {/* Submit Button */}
                         <Button
                             type="submit"
-                            className="w-full"
+                            className="w-full flex justify-center items-center gap-2 bg-yellow-400 text-black  border-2  hover:bg-yellow-300"
                             disabled={form.formState.isSubmitting}
                         >
                             {form.formState.isSubmitting ? (
                                 <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Signing in...
+                                    <Loader2 className="h-4 w-4 animate-spin" /> Signing in...
                                 </>
                             ) : (
                                 "Sign In"
@@ -106,11 +115,11 @@ function Signin() {
 
                 {/* Footer */}
                 <div className="text-center mt-4">
-                    <p>
+                    <p className="text-black text-sm">
                         Don’t have an account?{" "}
                         <Link
                             href="/signup"
-                            className="text-blue-600 hover:text-blue-800"
+                            className=" text-blue-500 underline"
                         >
                             Sign up
                         </Link>
