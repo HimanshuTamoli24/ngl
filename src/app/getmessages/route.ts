@@ -35,7 +35,6 @@ export async function GET(req: Request) {
                     }
                 }
             ])
-            console.log("user of pipleine ", user);
             if (!user || user.length === 0) {
                 return Response.json(
                     { success: false, message: "No messages found" },

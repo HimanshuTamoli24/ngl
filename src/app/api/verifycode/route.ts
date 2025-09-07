@@ -18,7 +18,7 @@ export async function POST(req: Request) {
 
 
 
-        console.log("Results of verify code validation:", results);
+        // console.log("Results of verify code validation:", results);
         const isUserValid = await UserModel.findOne({ username })
         if (!isUserValid) {
             return Response.json({

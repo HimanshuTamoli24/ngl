@@ -16,7 +16,7 @@ async function sendVerificationEmail(
             subject: 'verification code',
             react: VerificationEmail({ username: username, otp: verifyCode }),
         });
-        console.log("Email sent:", data);
+        // console.log("Email sent:", data);
 
         if (error) {
             console.error("Error sending email:", error);
