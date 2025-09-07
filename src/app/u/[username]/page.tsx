@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import SEOHead from '@/components/SEOHead';
 import axios, { AxiosError } from 'axios';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -54,7 +55,13 @@ export default function SendMessage() {
   };
 
   return (
-    <div className="flex justify-center items-start min-h-screen bg-gray-50 py-10 px-4">
+    <>
+      <SEOHead 
+        title={`Send Anonymous Text Message to @${username} - Askly`}
+        description={`Send fun anonymous text messages to @${username} safely and securely on Askly! Share your thoughts, ask questions, or have entertaining conversations without revealing your identity.`}
+        ogUrl={`https://www.asklyy.tech/u/${username}`}
+      />
+      <div className="flex justify-center items-start min-h-screen bg-gray-50 py-10 px-4">
       <div className="w-full max-w-2xl bg-white rounded-2xl hover:shadow-xs border shadow-s p-8 flex flex-col gap-6">
         {/* Header */}
         <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-800 italic">
@@ -106,8 +113,7 @@ export default function SendMessage() {
           </Link>
         </div>
       </div>
-    </div>
-
-
+      </div>
+    </>
   );
 }

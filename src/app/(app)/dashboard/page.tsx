@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
+import SEOHead from "@/components/SEOHead";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -99,7 +100,13 @@ function DashBoard() {
 
 
   return (
-    <div className="my-8 mx-4 md:mx-auto max-w-6xl space-y-6">
+    <>
+      <SEOHead 
+        title="Dashboard - Askly"
+        description="Manage your fun anonymous text messages, view analytics, and control your message settings from your personal Askly dashboard."
+        noIndex={true}
+      />
+      <div className="my-8 mx-4 md:mx-auto max-w-6xl space-y-6">
       <h1 className="text-4xl font-bold text-center text-gray-800">
         User Dashboard
       </h1>
@@ -159,7 +166,8 @@ function DashBoard() {
 
       <Separator />
 
-    </div>
+      </div>
+    </>
   );
 }
 

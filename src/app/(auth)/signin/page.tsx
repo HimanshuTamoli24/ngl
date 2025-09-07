@@ -1,6 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import SEOHead from "@/components/SEOHead"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import Link from "next/link"
@@ -39,7 +40,13 @@ function Signin() {
     }
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-white px-4">
+        <>
+            <SEOHead 
+                title="Sign In - Askly"
+                description="Sign in to your Askly account to access your dashboard and manage your fun anonymous text messages and conversations."
+                noIndex={true}
+            />
+            <div className="flex justify-center items-center min-h-screen bg-white px-4">
             {/* Card */}
             <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg border-2  shadow-lg">
 
@@ -126,7 +133,8 @@ function Signin() {
                     </p>
                 </div>
             </div>
-        </div>
+            </div>
+        </>
     )
 }
 

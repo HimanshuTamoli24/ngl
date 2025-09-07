@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AuthProvider from '../context/AuthProvider';
 import { Toaster } from "@/components/ui/sonner"
 import Navbar from "@/components/customui/Navbar";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +30,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://www.asklyy.tech'), // Replace with your actual domain
+  metadataBase: new URL('https://www.asklyy.tech'), 
   alternates: {
     canonical: '/',
   },
@@ -52,7 +41,7 @@ export const metadata: Metadata = {
     siteName: 'Askly',
     images: [
       {
-        url: '/og-image.jpg', // We'll create this
+        url: '/og-image.jpg', 
         width: 1200,
         height: 630,
         alt: 'Askly Platform - Fun Anonymous Text Messages',
@@ -65,8 +54,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Askly - Fun Anonymous Text Messages & Entertainment",
     description: "Askly is the ultimate fun platform for sending anonymous text messages! Share secrets, ask questions, and have entertaining conversations without revealing your identity.",
-    images: ['/twitter-image.jpg'], // We'll create this
-    creator: '@HimanshuTamoli', // Replace with your actual Twitter handle
+    images: ['/twitter-image.jpg'], 
+    creator: '@imarnav24', 
   },
   robots: {
     index: true,
@@ -80,13 +69,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code', // Replace with your actual verification code
-    yandex: 'your-yandex-verification-code', // Replace if you use Yandex
-    yahoo: 'your-yahoo-verification-code', // Replace if you use Yahoo
+    google: 'f77e52de381134a4', 
   },
 };
 import { Archivo_Black, Space_Grotesk } from "next/font/google";
-import Footer from "@/components/customui/Footer";
 
 const archivoBlack = Archivo_Black({
   subsets: ["latin"],
@@ -109,7 +95,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
       <head>
+        <script async defer data-website-id="366ef9fd-41fb-43b0-815d-01f5d7a4f125" src="https://cloud.umami.is/umami.js"></script>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -147,7 +135,7 @@ export default function RootLayout({
           <main>
             {children}
           </main>
-        
+
           <Toaster />
         </body>
       </AuthProvider>
