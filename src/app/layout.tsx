@@ -46,7 +46,10 @@ export default function RootLayout({
       <AuthProvider>
         <body className={`${archivoBlack.variable} ${space.variable}`}>
           <Navbar />
-          {children}
+
+          <main>
+            {children}
+          </main>
         
           <Toaster />
         </body>
