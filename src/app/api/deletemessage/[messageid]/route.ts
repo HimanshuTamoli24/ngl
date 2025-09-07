@@ -8,12 +8,12 @@ import mongoose from 'mongoose';
 
 
 export async function DELETE(
-  request: Request,
-  context: { params: Promise<{ messageid: string }> }
+    request: Request,
+    context: { params: Promise<{ messageid: string }> }
 ) {
-  const { messageid } = await context.params; 
-  console.log("Message ID to delete:", messageid);
-  
+    const { messageid } = await context.params;
+    // console.log("Message ID to delete:", messageid);
+
     await dbConnect();
     const session = await getServerSession(authOptions);
     const _user: User = session?.user;
@@ -23,21 +23,24 @@ export async function DELETE(
             { status: 401 }
         );
     }
-        if (!messageid) {
-            return Response.json(
-                { success: false, message: 'Message ID is required' },
-                { status: 400 }
-            );
-        }
-        console.log("Authenticated user:", _user);
-        
-    try {
-        const updateResult = await MessageModel.updateOne(
-            { _id: new mongoose.Types.ObjectId(_user.id) },
-            { $pull: { messages: { _id: new mongoose.Types.ObjectId(messageid) } } }
+    if (!messageid) {
+        return Response.json(
+            { success: false, message: 'Message ID is required' },
+            { status: 400 }
         );
-        console.log("Update Result:", updateResult);
-        
+    }
+    // console.log("Authenticated user:", _user);
+
+    try {
+
+        // console.log("+++++++++++++++++++++++++++++++++", await UserModel.find());
+
+        const updateResult = await UserModel.updateOne(
+            { _id: new mongoose.Types.ObjectId(_user.id) },
+            { $pull: { messages: new mongoose.Types.ObjectId(messageid) } }
+        );
+        // console.log("Update Result:", updateResult);
+
         if (updateResult.modifiedCount === 0) {
             return Response.json(
                 { message: 'Message not found or already deleted', success: false },
