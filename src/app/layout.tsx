@@ -97,7 +97,8 @@ export default function RootLayout({
     <html lang="en">
 
       <head>
-        <script async defer data-website-id="366ef9fd-41fb-43b0-815d-01f5d7a4f125" src="https://cloud.umami.is/umami.js"></script>
+     
+        <script defer src="https://cloud.umami.is/script.js" data-website-id="a6f3b334-7717-4e51-a11f-c3ba09c6536b"></script>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
