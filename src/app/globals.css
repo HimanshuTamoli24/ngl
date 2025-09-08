@@ -202,6 +202,11 @@ html, body {
   overflow-x: hidden;   /* block horizontal scroll */
   overflow-y: auto;     /* allow vertical scroll */
   font-family: 'BelganAesthetic', sans-serif;
+  height: 100%;
+}
+
+body {
+  scroll-behavior: smooth;
 }
 
 /* ===== Custom Scrollbar (Chrome / Brave) ===== */
@@ -236,4 +241,25 @@ html, body {
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;        /* Chrome / Brave */
+}
+
+/* ===== Snap Scroll Utilities ===== */
+.snap-y {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-mandatory {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+.snap-end {
+  scroll-snap-align: end;
 }

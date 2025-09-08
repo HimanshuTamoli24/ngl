@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://www.asklyy.tech'), 
+  metadataBase: new URL('https://www.asklyy.tech'),
   alternates: {
     canonical: '/',
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: 'Askly',
     images: [
       {
-        url: '/og-image.jpg', 
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Askly Platform - Fun Anonymous Text Messages',
@@ -54,8 +54,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Askly - Fun Anonymous Text Messages & Entertainment",
     description: "Askly is the ultimate fun platform for sending anonymous text messages! Share secrets, ask questions, and have entertaining conversations without revealing your identity.",
-    images: ['/twitter-image.jpg'], 
-    creator: '@imarnav24', 
+    images: ['/twitter-image.jpg'],
+    creator: '@imarnav24',
   },
   robots: {
     index: true,
@@ -69,10 +69,11 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'f77e52de381134a4', 
+    google: 'f77e52de381134a4',
   },
 };
 import { Archivo_Black, Space_Grotesk } from "next/font/google";
+import Footer from "@/components/customui/Footer";
 
 const archivoBlack = Archivo_Black({
   subsets: ["latin"],
@@ -97,7 +98,7 @@ export default function RootLayout({
     <html lang="en">
 
       <head>
-     
+
         <script defer src="https://cloud.umami.is/script.js" data-website-id="a6f3b334-7717-4e51-a11f-c3ba09c6536b"></script>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
@@ -136,7 +137,7 @@ export default function RootLayout({
           <main>
             {children}
           </main>
-
+          <Footer />
           <Toaster />
         </body>
       </AuthProvider>

@@ -60,32 +60,30 @@ export default function Home() {
     setProposals(statsApiCall(34, 45));
   }, []);
   return (
-    <SmoothSection>
-      <div className={`relative w-full min-h-screen  `}>
+    <div className="relative w-full min-h-screen">
+      <div
+        style={{
+          width: '100%',
+          height: '100vh',
+          position: 'fixed',
+          inset: 0,
+          backgroundColor: 'white',
+          zIndex: -1,
+        }}
+      >
+        <Particles
+          particleColors={['#ff0000', '#ffff00', '#000000']}
+          particleCount={400}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={100}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
 
-        <div
-          style={{
-            width: '100%',
-            height: '100vh',
-            position: 'absolute',
-            inset: 0,
-            backgroundColor: 'white',
-            zIndex: -1,
-          }}
-        >
-          <Particles
-            particleColors={['#ff0000', '#ffff00', '#000000']}
-            particleCount={400}
-            particleSpread={10}
-            speed={0.1}
-            particleBaseSize={100}
-            moveParticlesOnHover={true}
-            alphaParticles={false}
-            disableRotation={false}
-          />
-        </div>
-
-        <main className="   h-screen  snap-y snap-mandatory hide-scrollbar">
+      <main className="snap-y snap-mandatory">
           <motion.section
             className="h-screen  snap-start flex flex-col items-center  text-center px-4"
             initial={{ opacity: 0, y: 40 }}
@@ -317,11 +315,7 @@ export default function Home() {
               </motion.div>
             </motion.div>
           </section>
-        </main>
-        <Footer />
-      </div>
-    </SmoothSection>
-
-
+      </main>
+    </div>
   )
 }
