@@ -46,12 +46,12 @@ export async function GET(req: Request) {
             // console.log("user of pipleine ", user);
             if (!user || user.length === 0) {
                 return Response.json(
-                    { success: false, message: "No messages found" },
-                    { status: 404 }
+                    { success: true, data: [] },
+                    { status: 200 }
                 );
             }
             return Response.json(
-                { success: true, data: user[0].messages },
+                { success: true, data: user[0].messages ?? [] },
                 { status: 200 }
             );
 
